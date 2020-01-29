@@ -8,17 +8,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.ReceiverCallNotAllowedException;
 import android.os.Bundle;
 import android.renderscript.Script;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.common.util.CrashUtils;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import app.com.tezz.R;
 
@@ -40,6 +49,42 @@ public class MainFoodsActivity extends AppCompatActivity {
         rvMahliFoods = findViewById(R.id.rvMahaliFoods);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
+        Button crashButton = new Button(this);
+        crashButton.setText("Crash!");
+        crashButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+            }
+        });
+
+        addContentView(crashButton, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true).setCacheSizeBytes(FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED)
+                .build();
+        firebaseFirestore.setFirestoreSettings(settings);
+
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                    //        Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        // Log and toast
+                       // String msg = getString(R.string.action_settings, token);
+                       // Log.d(TAG, msg);
+                     //   Toast.makeText(MainFoodsActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 //Query
         Query query = firebaseFirestore.collection("MahaliFoods");
@@ -62,9 +107,9 @@ public class MainFoodsActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull FoodsViewHolder holder, int position, @NonNull Foods model) {
 
 
-                holder.tvPrice.setText(model.getPrice());
-                holder.tvDescription.setText(model.getDesc());
-                holder.tvName.setText(model.getName());
+             //   holder.tvPrice.setText(model.getPrice()+"");
+                holder.tvDescription.setText(model.getDesc()+"");
+                holder.tvName.setText(model.getName()+"");
 
                 Glide
                         .with(MainFoodsActivity.this)
@@ -77,7 +122,7 @@ public class MainFoodsActivity extends AppCompatActivity {
         };
 
         rvMahliFoods.setHasFixedSize(true);
-        rvMahliFoods.setLayoutManager(new LinearLayoutManager(MainFoodsActivity.this,LinearLayoutManager.HORIZONTAL,false));
+        rvMahliFoods.setLayoutManager(new LinearLayoutManager(MainFoodsActivity.this,LinearLayoutManager.VERTICAL,false));
 
         rvMahliFoods.setAdapter(adapter);
 

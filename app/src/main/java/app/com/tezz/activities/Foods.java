@@ -7,7 +7,7 @@ public class Foods {
 
     private String desc;
 
-    private int price;
+    private String price;
 
     private String photo;
 
@@ -15,7 +15,7 @@ public class Foods {
     public Foods() {
     }
 
-    public Foods(String name, String desc, int price, String photo) {
+    public Foods(String name, String desc, String price, String photo) {
         this.name = name;
         this.desc = desc;
         this.price = price;
@@ -38,11 +38,11 @@ public class Foods {
         this.desc = desc;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

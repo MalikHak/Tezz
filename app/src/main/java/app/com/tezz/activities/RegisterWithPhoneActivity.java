@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -59,6 +60,20 @@ public static final String TAG=RegisterWithPhoneActivity.class.getSimpleName();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_with_phone);
 
+
+
+
+        Button crashButton = new Button(this);
+        crashButton.setText("Crash!");
+        crashButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                throw new RuntimeException("Test Crash"); // Force a crash
+            }
+        });
+
+        addContentView(crashButton, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
 
         mAuth=FirebaseAuth.getInstance();
 
@@ -223,7 +238,7 @@ public static final String TAG=RegisterWithPhoneActivity.class.getSimpleName();
     private void goToMainActivity() {
 
 
-        Intent intent=new Intent(RegisterWithPhoneActivity.this,MainActivity.class);
+        Intent intent=new Intent(RegisterWithPhoneActivity.this,MainFoodsActivity.class);
         startActivity(intent);
         finish();
 
