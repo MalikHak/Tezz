@@ -33,6 +33,9 @@ Context context;
         this.context = context;
     }
 
+
+
+
     @NonNull
     @Override
     public CelebrityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
