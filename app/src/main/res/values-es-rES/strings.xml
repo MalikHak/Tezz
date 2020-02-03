@@ -3,4 +3,8 @@
 
     <string name="app_name">Tezz</string>
     <string name="action_settings">Settings</string>
+    <string name="enter_your_name">Enter your Name</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="enter_your_age">Enter Your Age</string>
+    <string name="button">Button</string>
 </resources>

@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <string name="enter_your_name">Enter your Name</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="enter_your_age">Enter Your Age</string>
+    <string name="button">Button</string>
+</resources>

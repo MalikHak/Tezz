@@ -4,4 +4,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="enter_your_name">Enter your Name</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="enter_your_age">Enter Your Age</string>
+    <string name="button">Button</string>
 </resources>

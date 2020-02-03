@@ -12,7 +12,9 @@ public class SessionManager {
     SharedPreferences.Editor editor;
     Context context;
 
+    private static SessionManager instance;
 
+    private static final String LANGUAGE = "App_Language";
     private static final String  IS_ONBOARDINGSHOWN="isONboardingshow";
     private  static final String HIFH_SCORE="highscore_user";
     private static  final String FIRST_VISIT="first_visit";
@@ -26,6 +28,14 @@ public class SessionManager {
 
     }
 
+
+
+    public static SessionManager getInstance(Context context) {
+        if (instance == null) {
+            instance = new SessionManager(context);
+        }
+        return instance;
+    }
 
     public void  setHighScore(int higNumber){
         editor.putInt(HIFH_SCORE,higNumber);
@@ -49,6 +59,16 @@ public class SessionManager {
 
         return pref.getBoolean(IS_ONBOARDINGSHOWN,true
         );
+    }
+
+
+    public String getLanguage() {
+        return pref.getString(LANGUAGE, "en");
+    }
+
+    public void setLanguage(String language) {
+        editor.putString(LANGUAGE, language);
+        editor.commit();
     }
 
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/iPickCamera"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:orderInCategory="100"
+        android:title="Take a Picture" />
+    <item
+        android:id="@+id/iPickGallery"
+        android:icon="@drawable/ic_help_black_24dp"
+        android:orderInCategory="100"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:title="Select a picture from Gallery" />
+</menu>

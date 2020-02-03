@@ -238,7 +238,7 @@ public static final String TAG=RegisterWithPhoneActivity.class.getSimpleName();
     private void goToMainActivity() {
 
 
-        Intent intent=new Intent(RegisterWithPhoneActivity.this,MainFoodsActivity.class);
+        Intent intent=new Intent(RegisterWithPhoneActivity.this,EditProfileUserActivity.class);
         startActivity(intent);
         finish();
 
